@@ -12,39 +12,25 @@ void line_draw(Tga_Image& image, int x1, int y1, int x2, int y2, const Tga_Color
     const bool change_coordinate = abs(y2 - y1) > abs(x2 - x1);
     if (change_coordinate)
     {
-        x1 = x1 ^ y1;
-        y1 = y1 ^ x1;
-        x1 = y1 ^ x1;
-
-        x2 = x2 ^ y2;
-        y2 = y2 ^ x2;
-        x2 = x2 ^ y2;
+        std::swap(x1, y1);
+        std::swap(x2, y2);
     }
     if (x1 > x2)
     {
-        x1 = x1 ^ x2;
-        x2 = x2 ^ x1;
-        x1 = x2 ^ x1;
-
-        y1 = y1 ^ y2;
-        y2 = y2 ^ y1;
-        y1 = y2 ^ y1;
+        std::swap(x1, x2);
+        std::swap(y1, y2);
     }
-    const double err = 1.0 * (y1 - y2) / (x1 - x2);
-    // std::cout << y1 << y2 << x1 << x2 << std::endl;
-    // std::cout << "err = " << err << std::endl;
-    double err_cont = 0;
+    int y = y1;
+    int err_cont = 0;
     for (int x = x1; x <= x2; x++)
     {
-        // std::cout << err_cont << std::endl;
-        if (err_cont < -0.5 || err_cont > 0.5)
+        if (std::abs(err_cont) > std::abs(x2 - x1))
         {
-            // std::cout << err_cont << std::endl;
-            y1 += err > 0.0 ? 1 : -1;
-            err_cont -= 1;
+            y += y2 > y1 ? 1 : -1;
+            err_cont -= 2 * (x2 - x1);
         }
-        change_coordinate ? image.set_color(y1, x, color) : image.set_color(x, y1, color);
-        err_cont += err;
+        change_coordinate ? image.set_color(y, x, color) : image.set_color(x, y, color);
+        err_cont += 2 * (y2 - y1);
     }
 }
 
