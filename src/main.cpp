@@ -25,12 +25,22 @@ int main(int argc, char** argv) {
     // }
     // Model model(argv[1]);
     Tga_Image framebuffer(width, height, Tga_Image::RGB);
-
+    
     int_vec2 a1( 7,  45);
     int_vec2 b1(35, 100);
     int_vec2 c1(45,  60);
 
-    triangle_draw(framebuffer, a1, b1, c1, red, DRAW_MODE::Filler);
+    int_vec2 a2(120,  35);
+    int_vec2 b2( 90,   5);
+    int_vec2 c2( 45, 110);
+
+    int_vec2 a3(115,  83);
+    int_vec2 b3( 80,  90);
+    int_vec2 c3( 85, 120);
+
+    triangle_draw(framebuffer, a1, b1, c1,   red, DRAW_MODE::Filler);
+    triangle_draw(framebuffer, a2, b2, c2, white, DRAW_MODE::Filler);
+    triangle_draw(framebuffer, a3, b3, c3, green, DRAW_MODE::Filler);
 
     // for (int i = 0; i < model.fragment_size(); i++)
     // {
