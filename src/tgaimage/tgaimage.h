@@ -25,9 +25,9 @@ struct Tga_Header
 
 struct Tga_Color
 {
-    std::uint8_t bgra[4] = {0, 0, 0, 0};
-    std::uint8_t bytes_pre_pixel = 4;
-    std::uint8_t operator[] (int i) { return bgra[i]; }
+    std::uint8_t  bgra[4] = {0, 0, 0, 0};
+    std::uint8_t  bytes_pre_pixel = 4;
+    std::uint8_t& operator[] (int i) { return bgra[i]; }
 };
 
 struct Tga_Image

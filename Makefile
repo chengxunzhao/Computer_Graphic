@@ -50,7 +50,7 @@ OBJCXX    += $(patsubst $(LOG_PATH)/%.cpp,  $(OBJECT_PATH)/%.o, $(LOG_CXXS))
 XLIBS     := -lfmt
 
 CXX       := g++
-CXXFLAGS := -std=c++17 -O2 -Wall
+CXXFLAGS := -std=c++17 -O0 -g -Wall
 
 all:  dir_check $(TARGET)
 

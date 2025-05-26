@@ -54,7 +54,9 @@ template<typename T> struct vec<T, 3>
     T x = 0, y = 0, z = 0;
     T&       operator[] (int i)       {assert(i >= 0 && i < 3); return i == 1 ? y : i ? z : x;};
     const T& operator[] (int i) const {assert(i >= 0 && i < 3); return i == 1 ? y : i ? z : x;};
-    /* data */
+    
+    vec<T, 3>() {};
+    vec<T, 3>(T x, T y, T z) : x(x) , y(y), z(z) {};
 };
 
 typedef vec<double, 2> double_vec2;

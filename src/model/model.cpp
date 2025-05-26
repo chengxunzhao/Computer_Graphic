@@ -25,19 +25,19 @@ Model::Model(std::string filename)
         {
            iss >> trash;
            
-           vertex vet;
+           double_vec3 vet;
            iss >> vet.x >> vet.y >> vet.z;
            vertexs.push_back(vet);
         }
         else if (line.compare(0, 2, "f ") == 0)
         {
             iss >> trash;
-            fragment fragm;
+            int_vec3 fragm;
             std::string a, b, c;
             iss >> a >> b >> c;
-            fragm.a = std::stoi(a.substr(0, a.find("/")));
-            fragm.b = std::stoi(b.substr(0, b.find("/")));
-            fragm.c = std::stoi(c.substr(0, c.find("/")));
+            fragm.x = std::stoi(a.substr(0, a.find("/")));
+            fragm.y = std::stoi(b.substr(0, b.find("/")));
+            fragm.z = std::stoi(c.substr(0, c.find("/")));
             fragments_index.push_back(fragm);
         }
     }
@@ -55,12 +55,12 @@ int Model::vertex_size() const
     return vertexs.size();
 }
 
-vertex Model::vetx(const int i) const
+double_vec3 Model::vetx(const int i) const
 {
     return vertexs[i];
 }
 
-vertex Model::fragment_vert(const int i_fragment, const int i_index)
+double_vec3 Model::fragment_vert(const int i_fragment, const int i_index)
 {
     return vertexs[fragments_index[i_fragment][i_index]];
 }
