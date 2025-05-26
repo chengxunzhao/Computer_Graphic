@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __TGAIMAGE__
+#define __TGAIMAGE__
 #include <cstdint>
 #include <string>
 #include <fstream>
@@ -58,3 +59,5 @@ private:
     std::uint8_t bytes_pre_pixel = 0;
     std::vector<std::uint8_t> data;
 };
+
+#endif // __TGAIMAGE__
